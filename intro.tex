@@ -1,4 +1,5 @@
-\chapter{Hello World !}
+%intro.tex
+\section{Sending messages}
 
 And now for something completely different.
 Every tutorial on programming starts with a tiny "Hello World" program, so why break with this tradition.
@@ -28,7 +29,7 @@ World!" message to a specified jid. It doesn't make much sense, but its a good s
 19 cl.disconnect()
 \end{verbatim}
 \newpage
-\section{Connecting to the server}
+\subsection{Connecting to the server}
 The first thing to do in every jabber session is to connect to your jabber server.
 Line 11 shows you how to do this. xmpp.Client() returns a Client instance, which is our basic object.
 You can think of the client-object as your connection to the server. If your server uses an unusual port, you can pass it to the xmpp.Client constructor. Its signature is: xmpp.Client(server,port,debug).
@@ -40,7 +41,7 @@ The most work happens in Line 13 and 15. We're connecting to the server and tryi
 Line 17 finally does the magic: It sends a message (with content \textit{msg}) to \textit{recipient}.
 After that, we should disconnect from the server to make a gracefull exit.
 
-\section{Messages and message types}
+\subsection{Messages and message types}
 
 You may have noticed that message you received from that script was shown to you on a different way than normal chat messages. If you use a pure jabber client like psi, which is very near to the jabber standart, the message might be shown like an email or something. That is because the xmpp protocol defines multiple message types. Less xmpp-compliant messengers like kopete make no difference between them.
 \newline
@@ -55,6 +56,8 @@ That sounds suitable, eh? Change line 17 to:
 \begin{verbatim}
 cl.send(xmpp.protocol.Message(recipient,msg,"chat"))
 \end{verbatim}
+
+
 
 
 

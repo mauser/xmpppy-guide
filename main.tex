@@ -18,7 +18,11 @@
 \tableofcontents
 \newpage
 
-\chapter{Motivation}
+
+
+
+\chapter{Introduction}
+\section{Motivation}
 This tutorial was started because the author wrote a small bot and figured out that there was not enough documentation available for xmpppy. The small examples distributed with it are fine, but when you're building you're own bot and fiddling around with things like rostermanagement, you wish that there's something between the bare API-Specs and the small examples. So i decided to write down my experiences and publish them..
 \newline
 This paper should help you to get started and covers the basic issues of programming with xmpppy.
@@ -32,9 +36,11 @@ Furthermore no Jabber specific terms (such as "jid") will be explained here. Ple
 This tutorial was written for a linux audience. I don't know if xmpppy works on Windows or *nix, so you've got to solve os-dependend problems by yourself.
 \newline
 \newline
-If like to contribute to this document or found a bug feel free to contact me.
+If you like to contribute to this document or found a bug feel free to contact me.
 \newline
 \newline Jabber/Mail: \textit{sebastian.moors@gmail.com}
+
+
 
 
 
@@ -71,13 +77,23 @@ For the best available documentation on jabber in general you should take a look
 \newline
 If you look for a concrete implementation of something, have a look at the projects using xmpppy under "Ressources".
 
+\section{License}
+
+This work is licensed under the creative commons license Attribution-NonCommercial-NoDerivs 2.0.
+You can obtain it at \textit{http://creativecommons.org/licenses/by\-nc\-nd/2.0/deed.en\_GB}
+
 
 \include{installation}
 \include{pre}
+
+\chapter{Basic concepts}
+
 \include{intro}
 \include{recv}
 \include{presence}
-\include{roster}
+%\include{roster}
+
+\chapter{Advanced concepts}
 \include{knigge}
 \include{ressources}
 

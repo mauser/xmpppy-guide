@@ -1,6 +1,7 @@
-\chapter{Handling presence events}
+%presence.tex
+\section{Handling presence events}
 
-\section{Simple presence handling}
+\subsection{Simple presence handling}
 
 Presence events are those messages which contain informations about your status and subscription.
 You may have wondered why our bot from example 2 wasn't shown as "online" in your contact list.
@@ -64,7 +65,7 @@ You can imagine that this is not the right thing for real world applications. I 
 \newline
 Think about who should be able to use your bot and block everyone else.
 \newpage
-\section{Retrieving the status}
+\subsection{Retrieving the status}
 
 
 Many applications need the status of an user. They want to know if he's online or offline or maybe only away.
@@ -75,12 +76,15 @@ and set their value if you receive a presence message for the jid.
 \newline
 \newline
 If you know a better way to do this, please contact me !
+
+
 \section{Roster management}
-
-
 The roster is the jabber synonym for the better known term "contact list". You can easily fetch, add or remove entries.
 In the most cases you won't have to deal with this, because the most actions are done automatically.
 For example if you subscribe to someones presence, he will be added to your roster.
-Therefore xmpppy offers you a higher level class to operate on your roster: x.roster.Roster
-The functions should be self-explanatory if you have a look at
+A common example for a manual use of roster functions is to retrieve the jids contained in your roster.
+
+Therefore xmpppy offers you a higher level class to operate on rosters: x.roster.Roster
+\newline
+The class should be self-explanatory if you have a look at
 \newline \textit{http://xmpppy.sourceforge.net/apidocs/public/x.roster.Roster-class.html}.

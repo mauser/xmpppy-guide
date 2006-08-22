@@ -1,4 +1,4 @@
-\chapter{Receiving messages}
+\section{Receiving messages}
 
 Receiving messages is a little bit more complicated than sending messages. You need an event loop and an handler to do this.
 \newline
@@ -56,5 +56,13 @@ The first parameter is the connection.The second parameter an x.protocol.Message
 If this example doesn't work for you, uncomment line 38. cl.sendInitPresence() tells our server that we're online. Some servers (for example Google's gtalk service) won't send messages to you if you're not marked as 'online'. A detailed look on presence handling is given in the next chapter.
 
 
+\section{Setting the ressource}
 
+The ressource of a jid is a nice jabber feature. With the use of different ressources, a jid can be logged into a server server several times. This means you can be online with more then one client 	at the same time.
+Setting the jid is a very simple thing: A third argument has to be passed to the auth() method.
+So the authentication step may look like this:
+
+\begin{verbatim}
+cl.auth(jid.getNode(),pwd,"laptop")
+\end{verbatim}
 
