@@ -1,0 +1,86 @@
+\chapter{Handling presence events}
+
+\section{Simple presence handling}
+
+Presence events are those messages which contain informations about your status and subscription.
+You may have wondered why our bot from example 2 wasn't shown as "online" in your contact list.
+This was because we didn't notify the server that the bot is online. This could be done by "sendInitPresence()". Go back to example 2 and uncomment the appropriate line. If the bot is in your roster, he will be marked as "online".
+\newline
+\newline
+The next thing about presence covers subscription. "subscription" in generally means: "Allow somebody to see if you're online and allow him to add you to his roster".
+To handle this events, we have to register a presence handler. This is done on the same way as the message handler in example 2.
+
+\begin{verbatim}
+1  #!/usr/bin/python
+2  import sys
+3  import xmpp
+4  import os
+5  import signal
+6  import time
+7
+8  def presenceCB(conn,msg):
+9	print str(msg)
+10	prs_type=msg.getType()
+11	who=msg.getFrom()
+12	if prs_type == "subscribe":
+13		conn.send(xmpp.Presence(to=who, typ = 'subscribed'))
+14		conn.send(xmpp.Presence(to=who, typ = 'subscribe'))
+15
+16
+17  def StepOn(conn):
+18    try:
+19        conn.Process(1)
+20    except KeyboardInterrupt:
+21	    return 0
+22    return 1
+23
+24 def GoOn(conn):
+25    while StepOn(conn):
+26	    pass
+27
+28
+29 def main():
+30	jid="user@domain.tld"
+31	pwd="secret"
+32
+33	jid=xmpp.protocol.JID(jid)
+34
+35	cl = xmpp.Client(jid.getDomain(), debug=[])
+36
+37	cl.connect()
+38
+39	cl.auth(jid.getNode(),pwd)
+40
+41
+42	cl.RegisterHandler('presence', presenceCB)
+43	cl.sendInitPresence()
+44
+45	GoOn(cl)
+46
+47 main()
+\end{verbatim}
+This is the most simple presence handler. When you receive a message containing "subscribe", return a "subscribed" answer and ask him for subscription. That means subscribing everyone who asks.
+You can imagine that this is not the right thing for real world applications. I prefer limits like a maximal roster size and a policy to add users to the roster. This may differ for your bot..
+\newline
+Think about who should be able to use your bot and block everyone else.
+\newpage
+\section{Retrieving the status}
+
+
+Many applications need the status of an user. They want to know if he's online or offline or maybe only away.
+This is not as easy as it seems. There's no direct way to get the Status of a given jid. You have to analyse the presence messages the oponnents send. If a user gets online or if you go online, everyone who has subscribed to you will send a presence message. Of course this works only if the user is online.
+If a user logs out, he sends you a presence message with the Status "Logged out". Everytime he changes his status, you will receive a corresponding status message.
+My workaround for the problem: keep track of the actual status with a dictionary. Take the jid as the key
+and set their value if you receive a presence message for the jid.
+\newline
+\newline
+If you know a better way to do this, please contact me !
+\section{Roster management}
+
+
+The roster is the jabber synonym for the better known term "contact list". You can easily fetch, add or remove entries.
+In the most cases you won't have to deal with this, because the most actions are done automatically.
+For example if you subscribe to someones presence, he will be added to your roster.
+Therefore xmpppy offers you a higher level class to operate on your roster: x.roster.Roster
+The functions should be self-explanatory if you have a look at
+\newline \textit{http://xmpppy.sourceforge.net/apidocs/public/x.roster.Roster-class.html}.

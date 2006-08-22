@@ -1,0 +1,86 @@
+\documentclass[a4paper,10pt]{report}
+
+
+\title{xmpppy: a practical guide}
+
+\author{Sebastian Moors \\ sebastian.moors@gmail.com}
+
+
+\date{07.08.2006 \\[1cm] Version 0.02}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+
+
+\end{titlepage}
+\tableofcontents
+\newpage
+
+\chapter{Motivation}
+This tutorial was started because the author wrote a small bot and figured out that there was not enough documentation available for xmpppy. The small examples distributed with it are fine, but when you're building you're own bot and fiddling around with things like rostermanagement, you wish that there's something between the bare API-Specs and the small examples. So i decided to write down my experiences and publish them..
+\newline
+This paper should help you to get started and covers the basic issues of programming with xmpppy.
+If you want to programm a bot, you will find some hints in the last chapters.
+I assume that you have already python knowledge, python basics are not covered by this tutorial.
+\newline
+\newline
+Furthermore no Jabber specific terms (such as "jid") will be explained here. Please use google to clarify this things.
+\newline
+\newline
+This tutorial was written for a linux audience. I don't know if xmpppy works on Windows or *nix, so you've got to solve os-dependend problems by yourself.
+\newline
+\newline
+If like to contribute to this document or found a bug feel free to contact me.
+\newline
+\newline Jabber/Mail: \textit{sebastian.moors@gmail.com}
+
+
+
+\section{What's so cool about jabber ?}
+Jabber/xmpp is an Open Source instant messaging protocol. It is described in the RFCs
+3920 - 3923 and is based on XML. A lot of Open Source and even commercial servers, clients and libraries are available.
+It has several advanced features such as encryption and conferences.
+Jabber beats ICQ and other protocols because the closed protocols are changing often and the libraries have to deal
+with that fact. Informations about these protocols are often the result of reverse engineering. This work has to be
+done every time the protocol changes. As you might know, this is a great problem for small software projects..
+\newline
+\\
+
+\section{Why xmpppy ?}
+
+
+I used xmpppy because it was available as a debian package and it's small. The design of xmpppy was exactly the thing i was looking for. There are high level functions for sending messages, but you can also build your messages as xml-strings if you wish to or if you need special features.
+\newline
+xmpppy is the inofficial successor of jabber.py, which i used before. The jabber.py project is dead now, so i migrated to xmpppy, which inherited some code from jabber.py and has a similar API.
+\newline
+If you're interested in other libraries, have a look at \textit{http://www.jabber.org}.
+
+
+\section{Existing documentation}
+Before you start with this tutorial you should gather informations about xmpppy and jabber.
+You will need the API-Overview which is available at the project homepage. There are also some example programs available. The examples in this book are mainly based on these online examples.
+\newline
+\newline
+Spend some time on the jabber.org or ask the wikipedia. If you're not new to this things, skip this..
+\newline
+\newline
+For the best available documentation on jabber in general you should take a look at the RFCs. They're easier to read than you might expect and contain a lot of useful informations.
+\newline
+\newline
+If you look for a concrete implementation of something, have a look at the projects using xmpppy under "Ressources".
+
+
+\include{installation}
+\include{pre}
+\include{intro}
+\include{recv}
+\include{presence}
+\include{roster}
+\include{knigge}
+\include{ressources}
+
+
+\newpage
+\end{document}
