@@ -80,12 +80,12 @@ def main():
 
 	cl.RegisterHandler('message', messageCB)
 
-	room = "castle_anthrax@conference.holy-gra.il/zoot"
+	room = "castle_anthrax@conf.holy-gra.il/zoot"
 	print "Joining " + room
 
 	cl.send(xmpp.Presence(to=room))
-	cl.send(xmpp.Message(castle_anthrax@conference.holy-gra.il,"zoot is here!","groupchat"))
-	cl.send(xmpp.Message(castle_anthrax@conference.holy-gra.il/galahad,"hey sweetheart","chat"))
+	cl.send(xmpp.Message(castle_anthrax@conf.holy-gra.il,"zoot is here!","groupchat"))
+	cl.send(xmpp.Message(castle_anthrax@conf.holy-gra.il/galahad,"hey sweetheart","chat"))
 
 	GoOn(cl)
 
