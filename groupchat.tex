@@ -24,8 +24,11 @@ The "from" attribut of the message looks like this: \textit{castle\_anthrax@conf
 
 Receiving messages is divided in 2 parts. If someone sends a public message, you'll receive a message with the type "groupchat".This message will be sent to every user in that room.A private message is send as a chat type message.
 \newline
+Sending message is as easy as receiving messages. Just send a groupchat message to the room-jid or send a chat message to a room-member, if you like some private chit-chat..
+\newline
 \newline
 The following example is based on recv.py, the script used in chapter 2: receiving messages.
+
 
 \begin{verbatim}
 #!/usr/bin/python
@@ -81,7 +84,8 @@ def main():
 	print "Joining " + room
 
 	cl.send(xmpp.Presence(to=room))
-
+	cl.send(xmpp.Message(castle_anthrax@conference.holy-gra.il,"zoot is here!","groupchat"))
+	cl.send(xmpp.Message(castle_anthrax@conference.holy-gra.il/galahad,"hey sweetheart","chat"))
 
 	GoOn(cl)
 
