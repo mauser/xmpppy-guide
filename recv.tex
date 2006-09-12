@@ -14,9 +14,9 @@ Message handlers are a basic concept for acting on events. This means that you h
 6  import time
 7
 8  def messageCB(conn,msg):
-9 	print "Sender: " + str(msg.getFrom())
-10	print "Content: " + str(msg.getBody())
-11	print msg
+9      print "Sender: " + str(msg.getFrom())
+10     print "Content: " + str(msg.getBody())
+11     print msg
 12
 13
 15 def StepOn(conn):
@@ -61,6 +61,8 @@ If this example doesn't work for you, uncomment line 38. cl.sendInitPresence() t
 The ressource of a jid is a nice jabber feature. With the use of different ressources, a jid can be logged into a server server several times. This means you can be online with more then one client 	at the same time.
 Setting the jid is a very simple thing: A third argument has to be passed to the auth() method.
 So the authentication step may look like this:
+
+
 
 \begin{verbatim}
 cl.auth(jid.getNode(),pwd,"laptop")
