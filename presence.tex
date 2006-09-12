@@ -20,12 +20,12 @@ To handle this events, we have to register a presence handler. This is done on t
 6  import time
 7
 8  def presenceCB(conn,msg):
-9	print str(msg)
-10	prs_type=msg.getType()
-11	who=msg.getFrom()
-12	if prs_type == "subscribe":
-13		conn.send(xmpp.Presence(to=who, typ = 'subscribed'))
-14		conn.send(xmpp.Presence(to=who, typ = 'subscribe'))
+9      print str(msg)
+10     prs_type=msg.getType()
+11     who=msg.getFrom()
+12           if prs_type == "subscribe":
+13           conn.send(xmpp.Presence(to=who, typ = 'subscribed'))
+14	     conn.send(xmpp.Presence(to=who, typ = 'subscribe'))
 15
 16
 17  def StepOn(conn):
@@ -88,3 +88,15 @@ Therefore xmpppy offers you a higher level class to operate on rosters: x.roster
 \newline
 The class should be self-explanatory if you have a look at
 \newline \textit{http://xmpppy.sourceforge.net/apidocs/public/x.roster.Roster-class.html}.
+
+\section{Disconnect handling}
+
+A lot of applications are acting on disconnects. This could happen if your jabber server crashes or if you have lost your internet connection. The action may differ, but a possible action would be displaying a message and reconnect..
+To act on disconnects, add a disconnect-handler. This is done analogical to the known event handlers.
+Write a function \textit{DisconnectHandler(self)} and register it via \textit{RegisterDisconnectHandler(self, DisconnectHandler)}.
+
+
+
+
+
+
