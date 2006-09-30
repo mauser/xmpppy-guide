@@ -24,39 +24,39 @@ To handle this events, we have to register a presence handler. This is done on t
 10     prs_type=msg.getType()
 11     who=msg.getFrom()
 12           if prs_type == "subscribe":
-13           conn.send(xmpp.Presence(to=who, typ = 'subscribed'))
-14	     conn.send(xmpp.Presence(to=who, typ = 'subscribe'))
+13               conn.send(xmpp.Presence(to=who, typ = 'subscribed'))
+14	         conn.send(xmpp.Presence(to=who, typ = 'subscribe'))
 15
 16
 17  def StepOn(conn):
 18    try:
-19        conn.Process(1)
+19          conn.Process(1)
 20    except KeyboardInterrupt:
 21	    return 0
 22    return 1
 23
 24 def GoOn(conn):
 25    while StepOn(conn):
-26	    pass
+26          pass
 27
 28
 29 def main():
-30	jid="user@domain.tld"
-31	pwd="secret"
+30    jid="user@domain.tld"
+31    pwd="secret"
 32
-33	jid=xmpp.protocol.JID(jid)
+33    jid=xmpp.protocol.JID(jid)
 34
-35	cl = xmpp.Client(jid.getDomain(), debug=[])
+35    cl = xmpp.Client(jid.getDomain(), debug=[])
 36
-37	cl.connect()
+37    cl.connect()
 38
-39	cl.auth(jid.getNode(),pwd)
+39    cl.auth(jid.getNode(),pwd)
 40
 41
-42	cl.RegisterHandler('presence', presenceCB)
-43	cl.sendInitPresence()
+42    cl.RegisterHandler('presence', presenceCB)
+43    cl.sendInitPresence()
 44
-45	GoOn(cl)
+45    GoOn(cl)
 46
 47 main()
 \end{verbatim}
