@@ -21,7 +21,6 @@ Of course it could happen that someone in this room has already chosen the nickn
 If nobody named "zoot" is in there, we'll receive a presence message from everybody in that room (including yourself).
 The "from" attribut of the message looks like this: \textit{castle\_anthrax@conference.holy-gra.il/galahad}, which means that somebody named galahad is already in this room.This might be interesting for you if you write a jabber client and you have to keep track of the nicks in the room.
 \newline
-
 Receiving messages is divided in 2 parts. If someone sends a public message, you'll receive a message with the type "groupchat".This message will be sent to every user in that room.A private message is send as a chat type message.
 \newline
 Sending message is as easy as receiving messages. Just send a groupchat message to the room-jid or send a chat message to a room-member, if you like some private chit-chat..
@@ -39,13 +38,13 @@ import signal
 import time
 
 def messageCB(conn,msg):
-	if msg.getType() == "groupchat":
-		print str(msg.getFrom()) +": "+  str(msg.getBody())
-	if msg.getType() == "chat":
-		print "private: " + str(msg.getFrom()) +  ":" +str(msg.getBody())
+        if msg.getType() == "groupchat":
+                print str(msg.getFrom()) +": "+  str(msg.getBody())
+        if msg.getType() == "chat":
+                print "private: " + str(msg.getFrom()) +  ":" +str(msg.getBody())
 
 def presenceCB(conn,msg):
-	print msg
+        print msg
 
 
 
@@ -54,40 +53,40 @@ def StepOn(conn):
     try:
         conn.Process(1)
     except KeyboardInterrupt:
-	    return 0
+        return 0
     return 1
 
 def GoOn(conn):
     while StepOn(conn):
-	    pass
+         pass
 
 
 def main():
 
-	jid="user@domain.tld"
-	pwd="secret"
+        jid="user@domain.tld"
+        pwd="secret"
 
-	jid=xmpp.protocol.JID(jid)
+        jid=xmpp.protocol.JID(jid)
 
-	cl = xmpp.Client(jid.getDomain(), debug=[])
+        cl = xmpp.Client(jid.getDomain(), debug=[])
 
-	cl.connect()
+        cl.connect()
 
-	cl.auth(jid.getNode(),pwd)
+        cl.auth(jid.getNode(),pwd)
 
 
-	cl.sendInitPresence()
+        cl.sendInitPresence()
 
-	cl.RegisterHandler('message', messageCB)
+        cl.RegisterHandler('message', messageCB)
 
-	room = "castle_anthrax@conf.holy-gra.il/zoot"
-	print "Joining " + room
+        room = "castle_anthrax@conf.holy-gra.il/zoot"
+        print "Joining " + room
 
-	cl.send(xmpp.Presence(to=room))
-	cl.send(xmpp.Message(castle_anthrax@conf.holy-gra.il,"zoot is here!","groupchat"))
-	cl.send(xmpp.Message(castle_anthrax@conf.holy-gra.il/galahad,"hey sweetheart","chat"))
+        cl.send(xmpp.Presence(to=room))
+        cl.send(xmpp.Message(castle_anthrax@conf.holy-gra.il,"zoot is here!","groupchat"))
+        cl.send(xmpp.Message(castle_anthrax@conf.holy-gra.il/galahad,"hey sweetheart","chat"))
 
-	GoOn(cl)
+        GoOn(cl)
 
 main()
 \end{verbatim}
