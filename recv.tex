@@ -23,12 +23,12 @@ Message handlers are a basic concept for acting on events. This means that you h
 16    try:
 17        conn.Process(1)
 18    except KeyboardInterrupt:
-19	    return 0
+19        return 0
 20    return 1
 21
 22 def GoOn(conn):
 23    while StepOn(conn):
-24	    pass
+24        pass
 25
 26
 27 def main():
