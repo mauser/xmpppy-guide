@@ -34,16 +34,16 @@ Message handlers are a basic concept for acting on events. This means that you h
 27 def main():
 28
 29
-30	jid="user@domain.tld"
-31	pwd="secret"
+30      jid="user@domain.tld"
+31      pwd="secret"
 32
-33	jid=xmpp.protocol.JID(jid)
-34	cl = xmpp.Client(jid.getDomain(), debug=[])
-35	cl.connect()
-36	cl.auth(jid.getNode(),pwd)
-37	cl.RegisterHandler('message', messageCB)
-38	#cl.sendInitPresence()
-39	GoOn(cl)
+33      jid=xmpp.protocol.JID(jid)
+34      cl = xmpp.Client(jid.getDomain(), debug=[])
+35      cl.connect()
+36      cl.auth(jid.getNode(),pwd)
+37      cl.RegisterHandler('message', messageCB)
+38      #cl.sendInitPresence()
+39      GoOn(cl)
 40
 41 main()
 \end{verbatim}
