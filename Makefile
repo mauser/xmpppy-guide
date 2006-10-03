@@ -1,11 +1,7 @@
 all:
-	latex main.tex && latex main.tex
-
+	./replaceExamples.py
+	cd ./tmp; make all
 clean:
-	rm -f *.aux
-	rm -f *.log
-	rm -f *~
-	rm -f *.toc
-
+	cd ./tmp; make clean
 pdf:	all
-	dvipdf main.dvi a_practical_guide_to_xmpppy.pdf
+	cd ./tmp; make pdf
