@@ -7,26 +7,7 @@ Our program connects to a jabber server, authenticates itself with a username/pa
 World!" message to a specified jid. It doesn't make much sense, but its a good start. Maybe you can use it  in shell scripts or something..
 
 \begin{verbatim}
-1  #!/usr/bin/python
-2  import sys,os,xmpp
-
-3  msg="Hello World!"
-4  jid="user@domain.tld"
-5  pwd="secret"
-6
-7  recipient="destination@domain.tld"
-8
-9  jid=xmpp.protocol.JID(jid)
-10
-11 cl=xmpp.Client(jid.getDomain(),debug=[])
-12
-13 cl.connect()
-14
-15 cl.auth(jid.getNode(),pwd)
-16
-17 cl.send(xmpp.protocol.Message(recipient,msg))
-18
-19 cl.disconnect()
+$$replace_with_send.py$$
 \end{verbatim}
 \newpage
 \subsection{Connecting to the server}

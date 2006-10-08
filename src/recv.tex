@@ -6,46 +6,7 @@ Message handlers are a basic concept for acting on events. This means that you h
 \newline
 \newline
 \begin{verbatim}
-1  #!/usr/bin/python
-2  import sys
-3  import xmpp
-4  import os
-5  import signal
-6  import time
-7
-8  def messageCB(conn,msg):
-9      print "Sender: " + str(msg.getFrom())
-10     print "Content: " + str(msg.getBody())
-11     print msg
-12
-13
-15 def StepOn(conn):
-16    try:
-17        conn.Process(1)
-18    except KeyboardInterrupt:
-19        return 0
-20    return 1
-21
-22 def GoOn(conn):
-23    while StepOn(conn):
-24        pass
-25
-26
-27 def main():
-28
-29
-30      jid="user@domain.tld"
-31      pwd="secret"
-32
-33      jid=xmpp.protocol.JID(jid)
-34      cl = xmpp.Client(jid.getDomain(), debug=[])
-35      cl.connect()
-36      cl.auth(jid.getNode(),pwd)
-37      cl.RegisterHandler('message', messageCB)
-38      #cl.sendInitPresence()
-39      GoOn(cl)
-40
-41 main()
+$$replace_with_recv.py$$
 \end{verbatim}
 We should focus on the main() method to understand how everything works. The most code should appear familiar to you. Line 37 holds one new method: \begin{verbatim}	RegisterHandler('message', messageCB)\end{verbatim}
 As you may have already guessed, the method "messageCB" is registered as a callback handler for incoming messages. So if you want to react an incoming messages, write a method called "messageCB" (as in line 8)

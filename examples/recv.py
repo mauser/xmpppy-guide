@@ -12,16 +12,15 @@ def messageCB(conn,msg):
 
 
 def StepOn(conn):
-    try:
-        conn.Process(1)
-    except KeyboardInterrupt:
-	    return 0
-    return 1
+	try:
+        	conn.Process(1)
+	except KeyboardInterrupt:
+		return 0
+	return 1
 
 def GoOn(conn):
-    while StepOn(conn):
-	    pass
-
+	while StepOn(conn):
+		pass
 
 def main():
 
@@ -30,8 +29,7 @@ def main():
 
 	jid=xmpp.protocol.JID(jid)
 
-	cl = xmpp.Client(jid.getDomain(), debug=['nodebuilder', 'dispatcher', 'gen_auth', 'SASL_auth', 'bind', 'socket',
- 'CONNECTproxy', 'TLS', 'roster', 'browser', 'ibb'])
+	cl = xmpp.Client(jid.getDomain(), debug=[])
 
 	cl.connect()
 
@@ -39,10 +37,8 @@ def main():
 
 	cl.RegisterHandler('message', messageCB)
 
-	cl.sendInitPresence()
+	#cl.sendInitPresence()
 
 	GoOn(cl)
 
 main()
-
-
