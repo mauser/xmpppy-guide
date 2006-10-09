@@ -3,8 +3,7 @@
 
 And now for something completely different.
 Every tutorial on programming starts with a tiny "Hello World" program, so why break with this tradition.
-Our program connects to a jabber server, authenticates itself with a username/password combination and sends a "Hello
-World!" message to a specified jid. It doesn't make much sense, but its a good start. Maybe you can use it  in shell scripts or something..
+Our program connects to a jabber server, authenticates itself with a username/password combination and sends a "Hello World!" message to a specified jid. It doesn't make much sense, but its a good start. Maybe you can use it  in shell scripts or something..
 
 \begin{verbatim}
 $$replace_with_send.py$$
@@ -16,10 +15,13 @@ Line 11 shows you how to do this. xmpp.Client() returns a Client instance, which
 You can think of the client-object as your connection to the server. If your server uses an unusual port, you can pass it to the xmpp.Client constructor. Its signature is: xmpp.Client(server,port,debug).
 \newline
 \newline
-The most work happens in Line 13 and 15. We're connecting to the server and trying to authenticate. That means the server just checks if our password is correct. jid.getNode() returns everything before the "@" in your jid.
+The most work happens in Line 14 and 18. We're connecting to the server and trying to authenticate. That means the server just checks if our password is correct. jid.getNode() returns everything before the "@" in your jid.
 \newline
 \newline
-Line 17 finally does the magic: It sends a message (with content \textit{msg}) to \textit{recipient}.
+You should check the return types of cl.connect() and cl.auth(). If you omit these checks strange errors could appear. If the cl.connect() fails (maybe because the jabber server is offline) it returns  an empty string. cl.auth() returns "None", for example if you provide a wrong password.
+\newline
+\newline
+Line 23 finally does the magic: It sends a message (with content \textit{msg}) to \textit{recipient}.
 After that, we should disconnect from the server to make a gracefull exit.
 
 \subsection{Messages and message types}
@@ -33,7 +35,7 @@ At this time we want to focus on 'chat' and 'normal'. In our example above, we d
 psi interprets this as "normal". "normal" is described as a single message, without history. I suppose
 you want to change that behaviour to 'chat' messages, so we have to set the type explicitly.
 Now switch to the API and look after the methods of xmpp.Protocol. You'll discover a method called setType.
-That sounds suitable, eh? Change line 17 to:
+That sounds suitable, eh? Change line 23 to:
 \begin{verbatim}
 cl.send(xmpp.protocol.Message(recipient,msg,"chat"))
 \end{verbatim}
